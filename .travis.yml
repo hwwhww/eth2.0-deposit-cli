@@ -16,10 +16,11 @@ script:
   - mkdir ${BUILD_FILE_NAME};
   - pyinstaller --distpath ./${BUILD_FILE_NAME} ./build_configs/linux/build.spec;
   - tar -zcvf ${BUILD_FILE_NAME}.tar.gz ./${BUILD_FILE_NAME};
-  - mkdir /out
-  - mkdir /out/artifacts;
-  - cp ${BUILD_FILE_NAME}.tar.gz /out/artifacts;
+  - sudo mkdir ./out;
+  - sudo mkdir ./out/artifacts;
+  - sudo cp ${BUILD_FILE_NAME}.tar.gz ./out/artifacts;
  
 addons:
   artifacts:
-    working_dir: out
+    s3_region: ap-southeast-1
+    paths: ./out
